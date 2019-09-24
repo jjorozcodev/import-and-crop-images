@@ -20,8 +20,41 @@ $(function () {
     var selectedFile;
 
     $("#upload_image").change(function (evt) {
-        selectedFile = evt.target.files[0];
 
+        if ((selectedFile = evt.target.files[0])) {
+            validateImageSizeType(selectedFile);
+        }
+
+    });
+
+    function validateImageSizeType(selectedImage){
+        var _URL = window.URL || window.webkitURL;
+        var img = new Image();
+
+        img.onload = function() {
+            if(this.width >= 200 && this.height >= 200){
+                readImgShowModal(selectedImage);
+            }
+            else
+            {
+                showAlert("This image doesn't have the minimum size required: 200px / 200px");
+            }
+        };
+
+        img.onerror = function() {
+            showAlert("File type not valid: " + selectedImage.type);
+        };
+        
+        img.src = _URL.createObjectURL(selectedImage);
+    }
+
+    function showAlert(msj) {
+        $('#AddAlertMessage').html(msj);
+        $("#AddAlert").show();
+        setTimeout(function () { $("#AddAlert").hide(); }, 3500);
+    }
+
+    function readImgShowModal(selectedImg){
         var reader = new FileReader();
         reader.onload = function (event) {
             $image_crop.croppie('bind', {
@@ -30,9 +63,9 @@ $(function () {
                 console.log('Bind complete!');
             });
         }
-        reader.readAsDataURL(this.files[0]);
+        reader.readAsDataURL(selectedImg);
         $('#uploadImageModal').modal('show');
-    });
+    }
 
     $('.crop_image').click(function () {
         $image_crop.croppie('result', {
