@@ -5,12 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Example using Croppie!</title>
+
+    <script
+    src="http://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div>
+    <div class="container text-center">
         <br>
         <h1>Example importing and cropping images using Croppie!</h1>
+        <hr>
+        <h5 id="noteInfo">Please, select a picture or photo...</h3>
+        <input hidden type="file" name="upload_image" id="upload_image">
+        <button id="btnGrab" class="btn btn-success">Grab a image!</button>
         <br>
+        <div class="mt-3 row">
+            <div class="col-md-6">
+                    <p class="font-italic">Here is your chosen file with JS pure:</p>
+                    <div id="uploaded_pic">
+                            <img id="myImage" class="img-thumbnail img-chosen" alt="Your image!" src="avatar_placeholder_temporary.png">
+                    </div>
+            </div>
+            <div class="col-md-6">
+                    <p class="font-italic">Here is your chosen file with JQuery:</p>
+                    <img id="myImg" class="img-thumbnail img-chosen" alt="Your image!" src="avatar-default-icon.png">
+                </div>
+               
+                
+        </div>
+        
     </div>
+
+
 </body>
 </html>
