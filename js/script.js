@@ -36,6 +36,7 @@ $(function () {
             else
             {
                 showAlert("This image doesn't have the minimum size required: 200px / 200px");
+                $('#upload_image').val('');
             }
         };
 
